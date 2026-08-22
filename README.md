@@ -46,7 +46,7 @@ Main
 SRP Single Responsibility Principle 
 DIP Dependency Inversion Principle 
 
-## Enlace GitHUb
+## Enlace GitHub
 
 ```bash
 git clone https://github.com/USUARIO/REPOSITORIO.git
