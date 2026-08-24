@@ -99,4 +99,4 @@ Verifiqué y adapté las respuestas obtenidas, puedo explicar el código y las d
 ## Autor
 
 SANTIAGO CAMPOVERDE
-santigo.campoverde@uees.edu.ec
+santiago.campoverde@uees.edu.ec
