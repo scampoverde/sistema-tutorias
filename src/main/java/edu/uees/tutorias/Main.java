@@ -1,4 +1,4 @@
-package edu.uees.tutorias.app;
+package edu.uees.tutorias;
 
 import edu.uees.tutorias.domain.*;
 import edu.uees.tutorias.notification.*;

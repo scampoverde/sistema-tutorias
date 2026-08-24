@@ -1,0 +1,97 @@
+@startuml "Diagrama de Clases - Sistema Tutorías"
+
+' Configuración visual para mejorar el diseño
+skinparam style strictuml
+skinparam linetype ortho
+skinparam classAttributeIconSize 0
+
+package "edu.uees.tutorias" {
+
+    package "domain" {
+        abstract class Usuario {
+            - id: Long
+            - nombre: String
+            - email: String
+        }
+
+        class Docente extends Usuario {
+            - especialidad: String
+        }
+
+        class Estudiante extends Usuario {
+            - matricula: String
+        }
+
+        class HorarioDisponible {
+            - id: Long
+            - fechaHora: LocalDateTime
+            - disponible: boolean
+        }
+
+        class Reserva {
+            - id: Long
+            - fechaCreacion: LocalDateTime
+        }
+
+        enum EstadoReserva {
+            PENDIENTE
+            ACEPTADA
+            RECHAZADA
+            CANCELADA
+        }
+    }
+
+    package "notification" {
+        interface Notificador {
+            + enviarNotificacion(mensaje: String, usuario: Usuario): void
+        }
+
+        class NotificadorEmail implements Notificador {
+            + enviarNotificacion(mensaje: String, usuario: Usuario): void
+        }
+    }
+
+    package "repository" {
+        interface ReservaRepository {
+            + guardar(reserva: Reserva): void
+            + buscarPorId(id: Long): Reserva
+            + listarTodas(): List<Reserva>
+        }
+
+        class ReservaRepositoryMemoria implements ReservaRepository {
+            - baseDatosSimulada: List<Reserva>
+        }
+    }
+
+    package "service" {
+        class ServicioReservas {
+            + crearReserva(estudiante: Estudiante, docente: Docente, horario: HorarioDisponible): Reserva
+            + cambiarEstado(idReserva: Long, nuevoEstado: EstadoReserva): void
+        }
+    }
+
+    class Main {
+        + {static} main(args: String[]): void
+    }
+
+}
+
+' ---- RELACIONES ENTRE CLASES ----
+
+' Un docente tiene múltiples horarios disponibles asignados
+Docente "1" *-- "0..*" HorarioDisponible
+
+' Una reserva asocia a un estudiante, un docente y un horario específico
+Reserva "1" --> "1" Estudiante : realiza
+Reserva "1" --> "1" Docente : asignada_a
+Reserva "1" --> "1" HorarioDisponible : ocupa
+Reserva "1" --> "1" EstadoReserva : estado
+
+' El servicio gestiona el repositorio y envía las alertas
+ServicioReservas --> ReservaRepository : usa
+ServicioReservas --> Notificador : notifica
+
+' El punto de entrada inicializa la aplicación
+Main ..> ServicioReservas : arranca
+
+@enduml

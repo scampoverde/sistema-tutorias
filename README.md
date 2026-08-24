@@ -42,31 +42,36 @@ Main
 
 ## Decisiones del diseno relevantes
 
+-Decisiones Documentadas
+SRP
+DIP
+-Decisiones de Arquitectura
+Arquitectura en Capas
+Modelo de Dominio
+Documentacion con PlantUML
+Automatizacion con MAVEN
+
 ## Principios SOLID
+
 SRP Single Responsibility Principle 
 DIP Dependency Inversion Principle 
 
 ## Enlace GitHub
 
-```bash
-git clone https://github.com/USUARIO/REPOSITORIO.git
-cd REPOSITORIO
+https://github.com/scampoverde/sistema-tutorias.git
 mvn clean test
-```
 
-## Imagen del diagrama UML
+## Imagenes del diagrama UML
+
 ![alt text](image.png)
+![alt text](image-1.png)
 
-## Requisitos para ejecutar el proyecto
+## Comando de compilación (mvn clean compile)
 
-```bash
-mvn package
-java -jar target/NOMBRE-DEL-ARCHIVO.jar
-```
-
-Adapte los comandos de ejecución a la estructura real del proyecto.
+![alt text](image-3.png)
 
 ## Estructura del proyecto
+
 README.md
 pom.xml
 
@@ -85,7 +90,6 @@ C:.
     └───test
         └───java
 
-
 ## Uso de inteligencia artificial
 
 Durante el desarrollo de esta actividad utilicé COPILOT.
@@ -94,4 +98,5 @@ Verifiqué y adapté las respuestas obtenidas, puedo explicar el código y las d
 
 ## Autor
 
-SANTIAGO CAMPOVERDE - santiago.campoverde@uees.edu.ec
+SANTIAGO CAMPOVERDE
+santigo.campoverde@uees.edu.ec
